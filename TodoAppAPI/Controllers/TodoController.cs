@@ -77,40 +77,6 @@ namespace TodoAppAPI.Controllers
         {
             throw new NotImplementedException();
         }
-
-        [HttpDelete]
-        [Route("{id:Guid}")]
-        public async Task<IActionResult> DeleteTodo([FromRoute] Guid id)
-        {
-            var todo = await _todoDbContext.Todos.FindAsync(id);
-
-            if (todo == null)
-                return NotFound();
-
-            todo.IsDeleted = true;
-            todo.DeletedDate = DateTime.Now;
-
-            await _todoDbContext.SaveChangesAsync();
-
-            return Ok(todo);
-        }
-
-        [HttpPut]
-        [Route("undo-deleted-todo/{id:Guid}")]
-        public async Task<IActionResult> UndoDeletedTodo([FromRoute] Guid id, Todo undoDeleteTodoRequest)
-        {
-            var todo = await _todoDbContext.Todos.FindAsync(id);
-
-            if(todo == null)
-                return NotFound();
-
-            todo.DeletedDate = null;
-            todo.IsDeleted = false;
-
-            await _todoDbContext.SaveChangesAsync();
-
-            return Ok(todo);
-        }
     }
 }
         

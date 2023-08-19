@@ -7,6 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TodoService {
+  updateTodo(id: string, todo: Todo) {
+    throw new Error('Method not implemented.');
+  }
   addNewTodoItem(newTodo: Todo) {
     throw new Error('Method not implemented.');
   }
@@ -22,6 +25,10 @@ export class TodoService {
   addTodoItem(newTodo: Todo): Observable<Todo>{
     newTodo.id= "00000000-0000-0000-0000-000000000000";
     return this.http.post<Todo>(this.baseApiUrl + '/api/todo', newTodo);
+  }
+
+  updateTodoItem(id:string, todo: Todo): Observable<Todo>{
+    return this.http.put<Todo>(this.baseApiUrl + '/api/todo'+ id, todo);
   }
 
 }
