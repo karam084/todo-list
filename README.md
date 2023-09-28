@@ -4,4 +4,5 @@ Create a full-stack application using Angular for the frontend and .NET Core for
 - Angular
 - SAP core
 - Reset API
-- Swagger 
+- Swagger
+- Database
